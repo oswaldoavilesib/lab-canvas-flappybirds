@@ -1,6 +1,4 @@
 //Van a ir mis Clases
-const canvas = document.getElementById("my-canvas");
-const ctx = canvas.getContext("2d");
 
 class Background{
     //constructor
@@ -27,6 +25,40 @@ class Background{
     }
 
     gameOver(){
-
+        ctx.font = "80px Arial";
+        ctx.fillText = ("Te moriste mi rey!",250,200)
     }
 }
+
+
+class Flappy{
+    constructor(x,y,w,h){
+        this.x = x;
+        this.y = y;
+        this.width = w;
+        this.height = h;
+        this.vy = 2 //gravity
+        this.userPull = 0;//contra la gravedad
+        this.image = new Image();
+        this.image.src = "../images/flappy.png"
+    }
+
+    draw(){
+        //Validar gravedad
+
+
+        //dibujar el flappy
+        ctx.drawImage(this.image,this.x,this.y,this.y,this.width,this.height);
+    }
+
+    collision(item){
+        return (
+            this.x < item.x + item.width &&
+            this.x + this.width > item.x &&
+            this.y < item.y + item.height &&
+            this.y + this.height > item.y
+        )
+    }
+
+}
+
